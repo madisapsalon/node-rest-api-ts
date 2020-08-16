@@ -1,1 +1,7 @@
-# node-rest-api-ts
+# node-rest-api boilerplate
+
+Tech stack
+- TypeScript
+- Express - 
+- PostgreSQL - database
+- Winston - logging

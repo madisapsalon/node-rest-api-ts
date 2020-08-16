@@ -12,7 +12,15 @@
     "type": "git",
     "url": "git+https://github.com/madisapsalon/node-rest-api-ts.git"
   },
-  "keywords": ["typescript", "rest", "api", "restapi", "postgres", "node", "express"],
+  "keywords": [
+    "typescript",
+    "rest",
+    "api",
+    "restapi",
+    "postgres",
+    "node",
+    "express"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -34,6 +42,8 @@
     "express-winston": "^4.0.5",
     "pg": "^8.3.0",
     "pg-format": "^1.0.4",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.25",
     "typescript": "^3.9.7",
     "winston": "^3.3.3",
     "winston-transport-sentry-node": "^0.6.0"
