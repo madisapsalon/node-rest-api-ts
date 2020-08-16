@@ -1,7 +1,7 @@
 {
   "name": "node-rest-api-ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node REST API boilerplate with Typescript",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/madisapsalon/node-rest-api-ts.git"
   },
-  "keywords": [],
+  "keywords": ["typescript", "rest", "api", "restapi", "postgres", "node", "express"],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -25,11 +25,15 @@
     "@types/express": "^4.17.7",
     "@types/express-winston": "^4.0.0",
     "@types/node": "^14.0.27",
+    "@types/pg": "^7.14.4",
+    "@types/pg-format": "^1.0.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^5.0.0-alpha.7",
     "express-winston": "^4.0.5",
+    "pg": "^8.3.0",
+    "pg-format": "^1.0.4",
     "typescript": "^3.9.7",
     "winston": "^3.3.3",
     "winston-transport-sentry-node": "^0.6.0"

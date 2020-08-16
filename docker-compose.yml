@@ -9,7 +9,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=reference
+      - POSTGRES_DB=restapi
     ports:
       - 5432:5432
     volumes:
@@ -17,7 +17,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: madis@madis.ee
+      PGADMIN_DEFAULT_EMAIL: noderestapi@noderestapi.ee
       PGADMIN_DEFAULT_PASSWORD: postgres
     volumes:
       - ../pgadmin:/root/.pgadmin
