@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  database:
+    image: postgres:latest
+    restart: always
+    networks:
+      - inner_network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=reference
+    ports:
+      - 5432:5432
+    volumes:
+      - ../postgres-data:/var/lib/postgresql
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: madis@madis.ee
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    volumes:
+      - ../pgadmin:/root/.pgadmin
+    ports:
+      - 5050:80
+    networks:
+      - inner_network
+    restart: unless-stopped
+networks:
+  inner_network:
