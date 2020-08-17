@@ -1,11 +1,15 @@
 import { Request, Response } from 'express';
+import passport from 'passport';
 
 export default [
   {
-    path: '/',
+    path: '/api/v1',
     method: 'get',
-    handler: async (req: Request, res: Response) => {
-      res.json({ message: 'GET / is successful' });
-    }
+    handler: [
+      passport.authenticate('jwt', { session: false }),
+      async (req: Request, res: Response) => {
+        res.json({ message: 'GET /api/v1 is successful' });
+      }
+    ]
   }
 ];

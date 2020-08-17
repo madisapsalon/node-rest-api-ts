@@ -7,6 +7,7 @@ import middleware from './middleware';
 import errorHandlers from './middleware/errorHandlers';
 import { logger } from './config/logger';
 import { initDependencies } from './config/index';
+import useJwtStrategy from './middleware/passport';
 
 // process.on('uncaughtException', e => {
 //   logger.error({
@@ -25,6 +26,7 @@ import { initDependencies } from './config/index';
 // });
 
 const router = express();
+applyMiddleware(useJwtStrategy, router);
 applyMiddleware(middleware, router);
 applyRoutes(routes, router);
 applyMiddleware(errorHandlers, router);
