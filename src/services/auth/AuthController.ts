@@ -23,19 +23,26 @@ export class AuthController {
     }
   }
 
+  generateJwtToken(user: User) {
+    const payload = { email: user.email, id: user.id };
+    return jwt.sign(payload, JWT_SECRET, {
+      algorithm: 'HS256',
+      expiresIn: 3000,
+    });
+  }
+
   async validateUser(authCredentials: User) {
     const { email, password } = authCredentials;
     try {
-      const user: any = await this.userRepository.findOne({ email });
+      const user = await this.userRepository.findOne({ email });
       if (user && await user.validatePassword(password)) {
-        const payload = { email: user.email, id: user.id };
-        return jwt.sign(payload, JWT_SECRET, {
-          algorithm: 'HS256',
-          expiresIn: 3000,
-        });
+        const accessToken = this.generateJwtToken(user);
+        return { accessToken };
+      } else {
+        return { message: 'Authentication failed' };
       }
     } catch (error) {
-      throw 'Auth Error';
+      throw error;
     }
 
   }

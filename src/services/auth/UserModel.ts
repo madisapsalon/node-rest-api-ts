@@ -1,17 +1,21 @@
 import {
   Column,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 import { BaseEntity, CreateDateColumn, Unique, UpdateDateColumn } from 'typeorm/index';
 import bcrypt from 'bcryptjs';
 
+interface UserDto {
+  email: string;
+  password: string;
+}
+
 @Entity()
 @Unique(['email'])
 export default class User extends BaseEntity {
-  constructor(body: any) {
+  constructor(body: UserDto) {
     super();
     if (body) {
       this.email = body.email;
@@ -20,26 +24,26 @@ export default class User extends BaseEntity {
   }
 
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id!: number;
 
   @IsNotEmpty()
   @IsEmail()
   @Column()
-  email: string;
+  email!: string;
 
   @IsNotEmpty()
   @MinLength(8)
   @Column()
-  password: string;
+  password!: string;
 
   @Column()
-  salt: string;
+  salt!: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);
