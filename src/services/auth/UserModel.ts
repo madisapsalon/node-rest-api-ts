@@ -6,6 +6,7 @@ import {
 } from 'typeorm';
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 import { BaseEntity, CreateDateColumn, Unique, UpdateDateColumn } from 'typeorm/index';
+import bcrypt from 'bcryptjs';
 
 @Entity()
 @Unique(['email'])
@@ -39,4 +40,9 @@ export default class User extends BaseEntity {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  async validatePassword(password: string): Promise<boolean> {
+    const hash = await bcrypt.hash(password, this.salt);
+    return hash === this.password;
+  }
 }

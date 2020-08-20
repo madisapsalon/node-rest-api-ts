@@ -7,9 +7,17 @@ import { logger } from '../../config/logger';
 export default [
   {
     path: '/api/v1/login',
-    method: 'get',
+    method: 'post',
     handler: async (req: Request, res: Response) => {
-      res.json({ message: 'GET /api/v1/login is successful' });
+      const authCredentials = new User(req.body);
+      try {
+        await validateOrReject(authCredentials);
+        const authController = new AuthController();
+        const token = await authController.validateUser(authCredentials);
+        res.json({ accessToken: token });
+      } catch (error) {
+        res.send(error);
+      }
     }
   },
   {
@@ -23,7 +31,6 @@ export default [
         const newUserCreated = await authController.addUser(newUser);
         res.json({ message: newUserCreated });
       } catch (error) {
-        console.log(error);
         logger.error(error);
         res.send(error);
       }
