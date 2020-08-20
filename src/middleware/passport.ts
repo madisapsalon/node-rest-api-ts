@@ -1,27 +1,21 @@
+import dotenv from 'dotenv';
 import passport from 'passport';
 import passportJwt from 'passport-jwt';
 import { Router } from 'express';
+
+dotenv.config();
 
 const useJwtStrategy = (router: Router) => {
   const extractJwt = passportJwt.ExtractJwt;
   const JwtStrategy = passportJwt.Strategy;
 
-  const jwtOptions: any = {}
-  jwtOptions.jwtFromRequest = extractJwt.fromAuthHeaderAsBearerToken();
-  jwtOptions.secretOrKey = 'secret';
-
-  const users = [
-    {
-      id: 1,
-      name: 'javier',
-      password: 'password123'
-    }
-  ];
+  const jwtOptions: any = {
+    jwtFromRequest: extractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: process.env.JWT_SECRET_KEY
+  }
 
   const strategy = new JwtStrategy(jwtOptions, (jwt_payload, next) => {
-    console.log('payload received', jwt_payload);
-    // usually this would be a database call:
-    next(null, {username: 'MadisA'});
+    next(null, jwt_payload);
   });
 
   passport.use(strategy);

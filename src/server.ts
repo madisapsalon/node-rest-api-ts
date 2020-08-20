@@ -9,21 +9,21 @@ import { logger } from './config/logger';
 import { initDependencies } from './config/index';
 import useJwtStrategy from './middleware/passport';
 
-// process.on('uncaughtException', e => {
-//   logger.error({
-//     message: `uncaughtException`,
-//     extra: e,
-//   });
-//   process.exit(1);
-// });
-//
-// process.on('unhandledRejection', e => {
-//   logger.error({
-//     message: `unhandledRejection`,
-//     extra: e,
-//   });
-//   process.exit(1);
-// });
+process.on('uncaughtException', e => {
+  logger.error({
+    message: `uncaughtException`,
+    extra: e,
+  });
+  process.exit(1);
+});
+
+process.on('unhandledRejection', e => {
+  logger.error({
+    message: `unhandledRejection`,
+    extra: e,
+  });
+  process.exit(1);
+});
 
 const router = express();
 applyMiddleware(useJwtStrategy, router);

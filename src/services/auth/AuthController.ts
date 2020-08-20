@@ -27,13 +27,11 @@ export class AuthController {
     const { email, password } = authCredentials;
     try {
       const user: any = await this.userRepository.findOne({ email });
-      const validPassword = await user.validatePassword(password);
-      if (user && validPassword) {
+      if (user && await user.validatePassword(password)) {
         const payload = { email: user.email, id: user.id };
-        console.log(payload);
         return jwt.sign(payload, JWT_SECRET, {
           algorithm: 'HS256',
-          expiresIn: 300,
+          expiresIn: 3000,
         });
       }
     } catch (error) {
