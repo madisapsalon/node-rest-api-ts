@@ -1,29 +1,27 @@
-import { Client } from 'pg';
-import dotenv from 'dotenv';
+import {createConnection} from "typeorm";
+import User from '../services/auth/UserModel'
 import { logger } from './logger';
 
-dotenv.config();
-
-// const { DATABASE_URL } = process.env;
-
-const dbClient = new Client({
-  connectionString: 'postgresql://postgres:postgres@localhost:5432/restapi',
-});
-
-dbClient.on('error', (err: Error) => {
-  logger.error({
-    message: `Postgres client: Unexpected error on idle client`,
-    extra: err,
-  });
-
-  process.exit(1);
-});
+const DB_HOST = process.env.DB_HOST
+const DB_PORT = 5432;
 
 const init = async () => {
-  await dbClient.connect();
+  await createConnection({
+    type: 'postgres',
+    host: DB_HOST,
+    port: DB_PORT,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    entities: [
+      User
+    ],
+    synchronize: true,
+    logging: false
+  });
   logger.info({
-    message: `Postgres client connected`,
+    message: `Postgres DB connected on ${DB_HOST}:${DB_PORT}`,
   });
 };
 
-export { init, dbClient };
+export { init }

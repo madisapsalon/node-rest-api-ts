@@ -8,6 +8,9 @@ import errorHandlers from './middleware/errorHandlers';
 import { logger } from './config/logger';
 import { initDependencies } from './config/index';
 import useJwtStrategy from './middleware/passport';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 process.on('uncaughtException', e => {
   logger.error({
@@ -31,14 +34,14 @@ applyMiddleware(middleware, router);
 applyRoutes(routes, router);
 applyMiddleware(errorHandlers, router);
 
-const { PORT = 3000 } = process.env;
+const PORT = process.env.PORT;
 const server = http.createServer(router);
 
 async function start() {
   await initDependencies();
   server.listen(PORT, () =>
     logger.info({
-      message: `Server is running http://localhost:${PORT}...`,
+      message: `Server is running on http://localhost:${PORT}...`,
     }),
   );
 }

@@ -1,5 +1,5 @@
 // import { init as initDb } from './db';
-import { init as initDb } from './db_orm'
+import { init as initDb } from './db'
 
 const initDependencies = async () => {
   // Connect with native Postgre driver
