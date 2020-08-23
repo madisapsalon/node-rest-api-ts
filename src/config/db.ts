@@ -1,6 +1,7 @@
 import {createConnection} from "typeorm";
 import User from '../services/auth/UserModel'
 import { logger } from './logger';
+import Entry from '../services/entry/EntryModel';
 
 const DB_HOST = process.env.DB_HOST
 const DB_PORT = 5432;
@@ -14,7 +15,7 @@ const init = async () => {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     entities: [
-      User
+      User, Entry
     ],
     synchronize: true,
     logging: false

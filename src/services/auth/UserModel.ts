@@ -1,11 +1,11 @@
 import {
   Column,
-  Entity,
   PrimaryGeneratedColumn
 } from 'typeorm';
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
-import { BaseEntity, CreateDateColumn, Unique, UpdateDateColumn } from 'typeorm/index';
+import { BaseEntity, CreateDateColumn, Entity, OneToMany, Unique, UpdateDateColumn } from 'typeorm/index';
 import bcrypt from 'bcryptjs';
+import Entry from '../entry/EntryModel';
 
 interface UserDto {
   email: string;
@@ -38,6 +38,9 @@ export default class User extends BaseEntity {
 
   @Column()
   salt!: string;
+
+  @OneToMany(type => Entry, entry => entry.user, { eager: true })
+  entries!: Entry[];
 
   @CreateDateColumn()
   createdAt!: Date;

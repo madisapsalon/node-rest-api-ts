@@ -1,4 +1,4 @@
 import authRoutes from './auth/routes'
-import entityRoutes from './entity/routes';
+import entityRoutes from './entry/routes';
 
 export default [...authRoutes, ...entityRoutes];
