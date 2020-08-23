@@ -3,10 +3,11 @@ import { validateOrReject } from 'class-validator';
 import User from './UserModel';
 import { AuthController } from './AuthController';
 import { logger } from '../../config/logger';
+import { apiRootPath } from '../../config/api-root';
 
 export default [
   {
-    path: '/api/v1/login',
+    path: `${apiRootPath}/login`,
     method: 'post',
     handler: async (req: Request, res: Response) => {
       const authCredentials: User = new User(req.body);
@@ -21,7 +22,7 @@ export default [
     }
   },
   {
-    path: '/api/v1/register',
+    path: `${apiRootPath}/register`,
     method: 'post',
     handler: async (req: Request, res: Response) => {
       const newUser = new User(req.body);
@@ -34,7 +35,6 @@ export default [
         logger.error(error);
         res.send(error);
       }
-
     }
   },
 ];

@@ -12,6 +12,13 @@ interface UserDto {
   password: string;
 }
 
+export interface JwtPayload {
+  email: string;
+  id: string;
+  iat: number,
+  exp: number;
+}
+
 @Entity()
 @Unique(['email'])
 export default class User extends BaseEntity {
