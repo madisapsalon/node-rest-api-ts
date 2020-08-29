@@ -1,14 +1,17 @@
 import { Request, Response } from 'express';
 import passport from 'passport';
-import { apiRootPath } from '../../config/api-root';
 import { logger } from '../../config/logger';
 import { validateOrReject } from 'class-validator';
 import Entry from './EntryModel';
 import { EntryController } from './EntryController';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const ROUTE_PREFIX = process.env.API_ROUTE_PREFIX as string;
 
 export default [
   {
-    path: `${apiRootPath}/entry`,
+    path: `${ROUTE_PREFIX}/entry`,
     method: 'get',
     handler: [
       passport.authenticate('jwt', { session: false }),
@@ -18,7 +21,7 @@ export default [
     ]
   },
   {
-    path: `${apiRootPath}/entry`,
+    path: `${ROUTE_PREFIX}/entry`,
     method: 'post',
     handler: [
       passport.authenticate('jwt', { session: false }),

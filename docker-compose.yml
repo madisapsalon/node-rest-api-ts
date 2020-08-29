@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   database:
+    container_name: node_rest_api
     image: postgres:latest
     restart: always
     networks:

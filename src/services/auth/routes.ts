@@ -3,11 +3,14 @@ import { validateOrReject } from 'class-validator';
 import User from './UserModel';
 import { AuthController } from './AuthController';
 import { logger } from '../../config/logger';
-import { apiRootPath } from '../../config/api-root';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const ROUTE_PREFIX = process.env.API_ROUTE_PREFIX as string;
 
 export default [
   {
-    path: `${apiRootPath}/login`,
+    path: `${ROUTE_PREFIX}/login`,
     method: 'post',
     handler: async (req: Request, res: Response) => {
       const authCredentials: User = new User(req.body);
@@ -22,7 +25,7 @@ export default [
     }
   },
   {
-    path: `${apiRootPath}/register`,
+    path: `${ROUTE_PREFIX}/register`,
     method: 'post',
     handler: async (req: Request, res: Response) => {
       const newUser = new User(req.body);
