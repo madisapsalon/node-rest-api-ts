@@ -1,6 +1,6 @@
 # Express REST API boilerplate with TypeScript
 
-Simple and lightweight boilerplate for REST API. See below how to it set up
+Simple and lightweight boilerplate for creating REST API.
 fast. 
 
 ## Features
@@ -37,7 +37,7 @@ It starts the latest Postgres database and pgAdmin 4 client.
 npm install
 ```
 
-Step 5: Start the server on http://localhost:3031
+**Step 5:** Start the server on http://localhost:3031
 ```
 npm run dev
 ```
