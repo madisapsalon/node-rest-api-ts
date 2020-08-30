@@ -16,11 +16,11 @@ fast.
 - [Dotenv](https://github.com/rolodato/dotenv-safe) - load environment variables from .env file
 - [Bcryptjs](https://github.com/dcodeIO/bcrypt.js/) - password encoding and decoding
 
-## Requirements
+## Before start, you need
 - Node 12.16+
 - Docker
 
-## Getting started
+## Let's started
 **Step 1:** Fork the repository or download it into your local machine
 
 **Step 2:** Open project in your IDE
@@ -42,7 +42,7 @@ npm install
 npm run dev
 ```
 
-## Development environment credentials
+## Default development environment credentials
 
 **Postgres database**
 
