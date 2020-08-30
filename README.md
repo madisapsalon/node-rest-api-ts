@@ -20,7 +20,7 @@ fast.
 - Node 12.16+
 - Docker
 
-## Let's started
+## Let's get started
 **Step 1:** Fork the repository or download it into your local machine
 
 **Step 2:** Open the project in your IDE
@@ -48,7 +48,7 @@ npm install
 npm run dev
 ```
 
-**You are good to go!**
+You are good to go!
 
 ## Default development environment credentials
 
