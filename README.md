@@ -23,13 +23,19 @@ fast.
 ## Let's started
 **Step 1:** Fork the repository or download it into your local machine
 
-**Step 2:** Open project in your IDE
+**Step 2:** Open the project in your IDE
 
 **Step 3:** Run docker-compose
 ```sh
 docker-compose up
 ```
-It starts the latest Postgres database and pgAdmin 4 client.
+It starts the latest Postgres database and pgAdmin 4 client (http://localhost:5050).
+
+*PS. You will find database IP with following command:*
+
+```
+docker inspect node_rest_api | grep IPAddress
+```
 
 **Step 4:** Install dependencies
 
@@ -42,6 +48,8 @@ npm install
 npm run dev
 ```
 
+**You are good to go!**
+
 ## Default development environment credentials
 
 **Postgres database**
@@ -52,12 +60,7 @@ PASSWORD: postgres
 
 DATABASE NAME: restapi
 
-*PS. You will find database IP with following command:*
-```
-docker inspect node_rest_api | grep IPAddress
-```
-
-**pgAdmin client (http://localhost:5050)**
+**pgAdmin client**
 
 EMAIL: noderestapi@noderestapi.ee
 
@@ -75,7 +78,7 @@ The route prefix is **/api/v1** by default, and it is defined in environment var
 | **/entry** | GET | - | An example entity endpoint for user entries |
 | **/entry** | POST | name  | An example entity endpoint for adding user's new entry | 
 
-## Project stucture
+## Project structure
 
 ```
 ├── dist
