@@ -114,10 +114,10 @@ The route prefix is **/api/v1** by default, and it is defined in environment var
 
 | Name | Description |
 | ------ | ------ |
-| /dist | Compiled typescript files |
-| /src | Source files |
-| /src/config | Everything for configure the api (database, logger...) |
-| /src/middleware | Middlewares for api. Common includes cors, helmet and  compression middlewares. |
-| /src/services | All services the api needs. Add all needed logic of the api here. Default service is authentication service. An example service is entry service. |
-| /src/utils | All helper and util methods and classes. Default utils are everything about error handling |
-| /src/server.ts | The api process journey starts from here. |
+| **/dist** | Compiled typescript files |
+| **/src** | Source files |
+| **/src/config** | Everything for configure the api (database, logger...) |
+| **/src/middleware** | Middlewares for api. Common includes cors, helmet and  compression middlewares. |
+| **/src/services** | All services the api needs. Add all needed logic of the api here. Default service is authentication service. An example service is entry service. |
+| **/src/utils** | All helper and util methods and classes. Default utils are everything about error handling |
+| **/src/server.ts** | The api process journey starts from here. |
