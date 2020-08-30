@@ -68,9 +68,56 @@ PASSWORD: postgres
 
 The route prefix is **/api/v1** by default, and it is defined in environment variables. 
 
-| Route | Body | Description |
-| ------ | ------ | ------ |
-| **POST /login** | email, password  | Authenticate user and get access token |
-| **POST /register** | email, password  | Save new user into database |
-| **GET /entry** | - | An example entity endpoint for user entries |
-| **POST /entry** | name  | An example entity endpoint for adding user's new entry | 
+| Route | Method | Body | Description |
+| ------ | ------ | ------ | ------ |
+| **/login** | POST |email, password  | Authenticate user and get access token |
+| **/register** | POST | email, password  | Save new user into database |
+| **/entry** | GET | - | An example entity endpoint for user entries |
+| **/entry** | POST | name  | An example entity endpoint for adding user's new entry | 
+
+## Project stucture
+
+```
+├── dist
+├── src
+│   ├── config
+│   │   ├── db.ts
+│   │   ├── index.ts
+│   │   └── logger.ts
+│   ├── middleware
+│   │   ├── common.ts
+│   │   ├── errorHandlers.ts
+│   │   ├── index.ts
+│   │   └── passport.ts
+│   ├── server.ts
+│   ├── services
+│   │   ├── auth
+│   │   │   ├── AuthController.ts
+│   │   │   ├── UserModel.ts
+│   │   │   └── routes.ts
+│   │   ├── entry
+│   │   │   ├── EntryController.ts
+│   │   │   ├── EntryModel.ts
+│   │   │   └── routes.ts
+│   │   └── index.ts
+│   └── utils
+│       ├── ErrorHandler.ts
+│       ├── httpErrors.ts
+│       └── index.ts
+│── tsconfig.json
+├── docker-compose.yml
+├── package-lock.json
+├── package.json
+├── LICENSE
+├── README.md
+```
+
+| Name | Description |
+| ------ | ------ |
+| /dist | Compiled typescript files |
+| /src | Source files |
+| /src/config | Everything for configure the api (database, logger...) |
+| /src/middleware | Middlewares for api. Common includes cors, helmet and  compression middlewares. |
+| /src/services | All services the api needs. Add all needed logic of the api here. Default service is authentication service. An example service is entry service. |
+| /src/utils | All helper and util methods and classes. Default utils are everything about error handling |
+| /src/server.ts | The api process journey starts from here. |
